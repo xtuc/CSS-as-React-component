@@ -1,0 +1,37 @@
+#!./node_modules/.bin/babel-node
+
+import { addIncludeReact, genComponent, classNameToComponentName } from "../lib/codegen"
+import { isRule, transformDeclarations } from "../lib/utils"
+import { print } from "../lib/writer"
+import { getRules, parseFile } from "../lib/parser"
+
+const filename = process.argv[2]
+const rules = getRules(parseFile(filename))
+
+const components = rules
+  .filter(isRule)
+  .reduce((acc, rule) => {
+    rule.selectors.map(selector => {
+
+      const name = classNameToComponentName(selector)
+      const style = transformDeclarations(rule.declarations)
+
+      // Already genetared
+      if (Object.keys(acc).indexOf(name) !== -1) {
+        // Merge style
+        acc[name].style = { ...acc[name].style, ...style }
+
+      } else {
+        acc[name] = { style, name }
+      }
+
+    })
+
+    return acc
+  }, {})
+
+const components2 = Object.values(components).map(genComponent)
+
+const ouput = components2.reduce((acc, e) => acc + e, addIncludeReact())
+
+print(ouput)
