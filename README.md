@@ -1,5 +1,7 @@
 # CSS as React component
 
+[![Build Status](https://travis-ci.org/xtuc/CSS-as-React-component.svg?branch=master)](https://travis-ci.org/xtuc/CSS-as-React-component)
+
 ## Goal
 
 Transform CSS code into React components or at least an attempt to it.
