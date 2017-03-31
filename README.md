@@ -1,5 +1,7 @@
 # CSS as React component
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/xtuc/CSS-as-React-component.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/xtuc/CSS-as-React-component.svg?branch=master)](https://travis-ci.org/xtuc/CSS-as-React-component)
 
 ## Goal
